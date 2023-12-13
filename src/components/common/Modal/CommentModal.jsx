@@ -4,12 +4,16 @@ import { AuthContextStore } from '../../../context/AuthContext';
 import { reportComment } from '../../../api/comment';
 import { deleteComment } from '../../../api/comment';
 import AlertModal from './AlertModal';
+import useModal from '../../../hooks/useModal';
 
 const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, setCommentList, setCommentCnt }) => {
   const modalRef = useRef();
   const { userToken, userAccountname } = useContext(AuthContextStore);
   const [isLoginUser, setIsLoginUser] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+
+  const { modalRef: modalReference } = useModal({ modalRef, onClose });
+
   useEffect(() => {
     // 댓글 작성자와 현재 사용자의 계정명 비교하여 isLoginUser 값을 설정
     setIsLoginUser(userAccountname === commentAuthor); // commentId는 댓글 작성자의 계정명으로 가정
@@ -59,12 +63,6 @@ const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, 
     }
   };
 
-  const clickOutside = (e) => {
-    if (modalRef.current && modalRef.current === e.target) {
-      onClose();
-    }
-  };
-
   // ReportModal 컴포넌트 신고 확인 메시지 렌더링
   const renderAlertModal = () => {
     if (selectedOption === '신고하기') {
@@ -81,7 +79,7 @@ const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, 
 
   return (
     <>
-      <S.ModalBg ref={modalRef} onClick={clickOutside} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
+      <S.ModalBg ref={modalReference} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
         <S.Ul>
           {options.map(
             (option, index) =>

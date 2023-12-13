@@ -3,12 +3,15 @@ import * as S from './Modal.style';
 import AlertModal from './AlertModal';
 import { useNavigate } from 'react-router-dom';
 import { AuthContextStore } from '../../../context/AuthContext';
+import useModal from '../../../hooks/useModal';
 
 const FeedModal = ({ options, onClose }) => {
   const modalRef = useRef();
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState('');
   const { setUserToken, setUserAccountname } = useContext(AuthContextStore);
+
+  const { modalRef: modalReference } = useModal({ modalRef, onClose });
 
   const optionClick = (option) => {
     if (option === '설정 및 개인정보') {
@@ -56,13 +59,6 @@ const FeedModal = ({ options, onClose }) => {
     return null;
   };
 
-  const clickOutside = (e) => {
-    // 어두운 배경 클릭시 하단 모달창 닫기
-    if (modalRef.current && modalRef.current === e.target) {
-      onClose();
-    }
-  };
-
   const optionElements = options.map((option, index) => (
     <S.Li key={index}>
       <button onClick={() => optionClick(option)}>{option}</button>
@@ -71,7 +67,7 @@ const FeedModal = ({ options, onClose }) => {
 
   return (
     <>
-      <S.ModalBg ref={modalRef} onClick={clickOutside} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
+      <S.ModalBg ref={modalReference} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
         <S.Ul>{optionElements}</S.Ul>
       </S.ModalBg>
       {renderAlertModal()}

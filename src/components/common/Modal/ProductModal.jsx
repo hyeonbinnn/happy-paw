@@ -4,6 +4,7 @@ import AlertModal from './AlertModal';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContextStore } from '../../../context/AuthContext';
 import { deleteProduct } from '../../../api/product';
+import useModal from '../../../hooks/useModal';
 
 const ProductModal = ({ onClose, productId, products, setProducts, formData }) => {
   const modalRef = useRef();
@@ -13,6 +14,8 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
   const { userToken, userAccountname } = useContext(AuthContextStore);
   const userId = useMemo(() => (accountname ? accountname : userAccountname), [accountname, userAccountname]);
   const isLoginUser = useMemo(() => userId === userAccountname, [userId, userAccountname]);
+
+  const { modalRef: modalReference } = useModal({ modalRef, onClose });
 
   const options = useMemo(
     () => [
@@ -43,7 +46,6 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
   // 모달 닫기
   const closeModal = useCallback(
     async (option) => {
-      // console.log(productId);
       if (option === '삭제') {
         await fetchDelete(productId);
         setProducts(products.filter((product) => product.id !== productId));
@@ -68,16 +70,6 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
     }
   }, [productId, userToken]);
 
-  // 어두운 배경 클릭시 하단 모달창 닫기
-  const clickOutside = useCallback(
-    (e) => {
-      if (modalRef.current && modalRef.current === e.target) {
-        onClose();
-      }
-    },
-    [onClose],
-  );
-
   // AlertModal 컴포넌트 확인 메시지 렌더링
   const renderAlertModal = useMemo(() => {
     if (selectedOption === '삭제') {
@@ -97,7 +89,7 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
 
   return (
     <>
-      <S.ModalBg ref={modalRef} onClick={clickOutside} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
+      <S.ModalBg ref={modalReference} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
         <S.Ul>
           {options.map(
             (option, index) =>

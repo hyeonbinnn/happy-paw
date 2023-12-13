@@ -4,6 +4,7 @@ import AlertModal from './AlertModal';
 import { useNavigate } from 'react-router-dom';
 import { AuthContextStore } from '../../../context/AuthContext';
 import { deletePost, reportPost } from '../../../api/post';
+import useModal from '../../../hooks/useModal';
 
 const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathname }) => {
   const modalRef = useRef();
@@ -11,6 +12,8 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
   const [isLoginUser, setIsLoginUser] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const { userToken, userAccountname } = useContext(AuthContextStore);
+
+  const { modalRef: modalReference } = useModal({ modalRef, onClose });
 
   useEffect(() => {
     // 게시글 작성자와 현재 사용자의 계정명 비교하여 isLoginUser 값을 설정
@@ -84,13 +87,6 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
     }
   };
 
-  // 어두운 배경 클릭할 때 모달창 처리
-  const clickOutside = (e) => {
-    if (modalRef.current && modalRef.current === e.target) {
-      onClose();
-    }
-  };
-
   const renderAlertModal = () => {
     if (selectedOption === '삭제') {
       return (
@@ -117,7 +113,7 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
 
   return (
     <>
-      <S.ModalBg ref={modalRef} onClick={clickOutside} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
+      <S.ModalBg ref={modalReference} style={{ pointerEvents: selectedOption ? 'none' : 'auto' }}>
         <S.Ul>
           {options.map(
             (option, index) =>
