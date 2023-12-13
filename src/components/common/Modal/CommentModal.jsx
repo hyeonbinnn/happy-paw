@@ -43,8 +43,6 @@ const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, 
   };
 
   const fetchDelete = async () => {
-    // console.log('postId 값:', postId);
-    // console.log('commentId 값:', commentId);
     try {
       await deleteComment(postId, commentId, userToken);
       setCommentList(commentList.filter((comment) => comment.id !== commentId));
