@@ -21,7 +21,7 @@
 3. [협업 환경](#3-협업-환경)
 4. [역할 분담](#4-역할-분담)
 5. [프로젝트 구현](#5-프로젝트-구현)
-6. [핵심 기술](#6-핵심-기술)
+6. [핵심 코드](#6-핵심-코드)
 7. [트러블 슈팅](#7-트러블-슈팅)
 
 <br>
@@ -303,13 +303,199 @@ export default theme;
 
 <br>
 <br>
+<br>
 
-## 6. 핵심 기술
+## 6. 핵심 코드
+### 실시간 이메일, 계정 ID 중복 검사 실행
 
+```jsx
+useEffect(() => {
+  if (!['email', 'accountname'].includes(id)) return;
 
+  if (
+    (id === 'email' && !EMAIL_REGEX.test(formData.email)) ||
+    (id === 'accountname' && !ID_REGEX.test(formData.accountname)) ||
+    formData['accountname'] === userAccountname
+    // 프로필 수정 페이지에서 현재 로그인한 유저의 accountname인 경우 이미 가입된 계정이라는 에러 메세지를 보여주지 않기 위함
+  ) {
+    return;
+  }
 
+  const errorMsg = id === 'email' ? '이미 가입된 이메일 주소 입니다.' : '이미 가입된 계정ID 입니다.';
+
+  const timer = setTimeout(() => {
+    checkDuplication(errorMsg);
+  }, 300);
+
+  return () => {
+    clearTimeout(timer);
+  };
+}, [formData.email, formData.accountname]);
+```
+
+- <strong>`email`</strong>과 <strong>`accountname`</strong>만 중복 검사를 진행하기 때문에 <strong>`id`</strong>가 다른 값이 되면 <strong>`return`</strong>을 합니다. <br>
+그 다음 <strong>`formData.email`</strong>, <strong>`formData.accountname`</strong>이 변경될 때마다 실행이 됩니다.
+
+- 조건문을 통해 입력된 이메일과 계정 ID의 형식이 올바른지 확인한 뒤, <strong>`formData.accountname`</strong>이 현재 로그인한 사용자의 계정 ID와 일치하지 않는지 확인 후, 만약 조건에 해당하지 않는다면 함수를 종료합니다.
+
+- 그 이외에, 중복된 이메일 또는 계정 ID 에러 메시지를 설정하고, 300밀리초 후에 <strong>`checkDuplication`</strong> 함수를 호출합니다. <br>
+  <strong>`timer`</strong> 변수에는 <strong>`setTimeout`</strong> 함수로 생성된 타이머 ID가 저장되며, <strong>`clearTimeout`</strong>을 사용하여 타이머 취소가 가능합니다.
+
+- <strong>`useEffect`</strong>의 반환 함수는 해당 이펙트가 정리(clean-up)될 때 실행하고, 여기서 타이머를 취소하기 위해 <strong>`clearTimeout`</strong>을 호출합니다. <br>
+디바운싱 기능을 적용함으로써 사용자가 입력할 때마다 서버요청을 하지 않기에 통신 비용이 발생하지 않습니다.
+
+<br>
+
+### 이미지 업로드를 위한 커스텀 훅
+```jsx
+import { useState } from 'react';
+import { uploadImages } from '../api/image';
+
+const ALLOWED_EXTENSIONS = ['.jpg', '.gif', '.png', '.jpeg', '.bmp', '.tif', '.heic'];
+const MAX_SIZE = 10 * 1024 * 1024;
+
+const useImagesUpload = () => {
+  const [images, setImages] = useState([]);
+
+  const onUpload = async (files, length) => {
+    if (images.length + length > 3) return alert('이미지는 최대 3개까지 업로드 할 수 있습니다.');
+
+    const formData = new FormData();
+    for (let i = 0; i < length; i++) {
+      const file = files[i];
+
+      const fileExtension = file.name.split('.').pop().toLowerCase();
+      if (ALLOWED_EXTENSIONS.includes(`.${fileExtension}`) && file.size <= MAX_SIZE) {
+        formData.append('image', file);
+      }
+    }
+
+    try {
+      const data = await uploadImages(formData);
+      const filenames = data.map((data) => data.filename);
+      setImages((prev) => [...prev, ...filenames]);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const onDelete = (index) => {
+    setImages((prevImages) => {
+      const updatedImages = [...prevImages];
+      updatedImages.splice(index, 1);
+      return updatedImages;
+    });
+
+    alert('삭제되었습니다.');
+  };
+
+  return { images, onUpload, onDelete };
+};
+
+export default useImagesUpload;
+```
+
+- 이미지 업로드는 특성상 회원가입 시 프로필 설정, 프로필 수정, 게시글 작성, 상품 등록 등 여러 페이지에서 반복적으로 사용됩니다. 그래서 여러 이미지를 업로드 할 수 있는 상태를 선언하고, 새롭게 들어오는 이미지들과 기존 이미지를 합친 값이 3이 넘으면 더 이상 업로드 할 수 없도록 구현합니다.
+
+- <strong>`FormData`</strong> 객체를 생성하고, <strong>`files`</strong> 배열을 순회하면서 허용되는 확장자 목록과 이미지 사이즈를 검사한 뒤, 통과한다면 <strong>`formData`</strong>에 <strong>`image`</strong> 라는 키 값으로 파일을 추가할 수 있습니다.
+
+- 그 다음 <strong>`uploadImages`</strong> 함수를 통해 서버에 이미지를 업로드하고, 서버 응답에서 파일명을 추출하여 상태를 업데이트하고, <strong>`setImages`</strong> 함수를 사용해 이전 상태값인 <strong>`prev`</strong> 배열과 새로운 파일명 배열인 <strong>`filenames`</strong>를 합쳐서 상태를 갱신합니다.
+
+- 이렇게 함으로써, 이미지 업로드 후의 상태값을 업데이트하고 <strong>`React`</strong> 컴포넌트가 리렌더링될 수 있도록 합니다.
 
 <br>
 <br>
+<br>
+
 
 ## 7. 트러블 슈팅
+### 반복되는 API 요청 작업을 줄이기 위해 파일 분리하기
+```jsx
+const BASE_URL = 'https://api.mandarin.weniv.co.kr';
+
+export const request = async (url, options) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${url}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const imageRequest = async (url, options) => {
+  try {
+    const response = await fetch(`${BASE_URL}/${url}`, { ...options });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+```
+
+- 가장 기본이 되는 <strong>`request`</strong> 함수를 만들어 줍니다. 그 다음, 로그인은 <strong>`auth.js`</strong> , 게시글은 <strong>`post.js`</strong> , 상품은 <strong>`product.js`</strong> 등 기능별로 파일을 만듭니다.
+
+<br>
+<br>
+
+```jsx
+import { request } from './request';
+
+// 회원가입
+export const join = async (state, formData, image) => {
+  return await request('user', {
+    method: 'POST',
+    body: JSON.stringify({ user: { ...state, ...formData, image } }),
+  });
+};
+
+// 로그인
+export const login = async (email, password) => {
+  return await request('user/login', {
+    method: 'POST',
+    body: JSON.stringify({ user: { email, password } }),
+  });
+};
+
+// 토큰 검증
+// ...
+
+// 이미 존재하는 이메일(또는 계정)인지 검사
+export const validateForm = async (id, formData) => {
+  return await request(`user/${id}valid`, {
+    method: 'POST',
+    body: JSON.stringify({ user: { [id]: formData[id] } }),
+  });
+};
+```
+
+- 파일 내에서 필요한 요청들 즉, <strong>`auth.js`</strong>는 회원가입, 로그인 등 <strong>`post.js`</strong>는 게시글 불러오기, 업로드, 수정, 삭제, 신고 등 각각의 함수로 만들어 줍니다.
+
+- 그리고 각각의 함수를 사용할 때는 먼저 import 해주고, api를 가져온 후 필요한 인자 값들을 넘겨주면 됩니다.
+
+<br>
+<br>
+
+![화면 캡처 2023-12-14 201943](https://github.com/hyeonbinnn/happy-paw/assets/117449788/1f2773cb-5066-4035-9c16-ca316579b6b0)
+
+<br>
+<br>
+
+
+
+
+<br>
+<br>
