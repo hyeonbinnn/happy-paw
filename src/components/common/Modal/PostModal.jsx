@@ -20,8 +20,6 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
     setIsLoginUser(userAccountname === postAuthor);
   }, [userAccountname, postAuthor]);
 
-  // console.log(postAuthor);
-
   const isAuthor = author?.accountname === userAccountname;
 
   const options = [
@@ -51,18 +49,17 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
     },
   ];
 
-  // 모달 닫기
   const closeModal = async (option) => {
     if (option === '삭제') {
       await fetchDelete(postId, userToken);
-      setPosts(posts.filter((post) => post.id !== postId)); // 삭제된 게시물을 제외한 나머지 게시물 목록 설정
+      setPosts(posts.filter((post) => post.id !== postId));
       if (pathname === `/postdetail/${postId}`) {
-        navigate(-1); // 이전 페이지로 이동 (-1은 이전 페이지를 의미)
+        navigate(-1);
       }
       onClose();
     } else if (option === '취소') {
       setSelectedOption('');
-      onClose(); // onClose 콜백 호출
+      onClose();
     } else if (option === '확인') {
       fetchReport(postId, userToken);
       console.log('신고하기 완료!');
@@ -72,10 +69,9 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
 
   const fetchDelete = async () => {
     try {
-      // console.log('Deleting post:', postId);
       await deletePost(postId, userToken);
     } catch (error) {
-      // console.error(error);
+      console.log(error);
     }
   };
 
@@ -83,7 +79,7 @@ const PostModal = ({ onClose, postId, posts, setPosts, postAuthor, author, pathn
     try {
       await reportPost(postId, userToken);
     } catch (error) {
-      // console.error(error);
+      console.log(error);
     }
   };
 

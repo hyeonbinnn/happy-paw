@@ -43,7 +43,6 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
     [isLoginUser, navigate, productId, formData],
   );
 
-  // 모달 닫기
   const closeModal = useCallback(
     async (option) => {
       if (option === '삭제') {
@@ -53,24 +52,20 @@ const ProductModal = ({ onClose, productId, products, setProducts, formData }) =
         onClose();
       } else if (option === '취소') {
         setSelectedOption('');
-        onClose(); // onClose 콜백 호출
+        onClose();
       }
     },
     [onClose, productId, setProducts],
   );
 
-  // 상품 및 삭제 오류 처리
   const fetchDelete = useCallback(async () => {
-    // console.log('productId 값:', productId);
     try {
       await deleteProduct(productId, userToken);
     } catch (error) {
-      // 실패할 경우
       console.error('상품 삭제 오류:', error);
     }
   }, [productId, userToken]);
 
-  // AlertModal 컴포넌트 확인 메시지 렌더링
   const renderAlertModal = useMemo(() => {
     if (selectedOption === '삭제') {
       return (

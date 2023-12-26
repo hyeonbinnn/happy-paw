@@ -8,8 +8,8 @@ const TopMainNav = () => {
   return (
     <S.Header>
       <h1>
-        <span className='a11y-hidden'>강냥공냥공냥냥</span>
-        <img src={headerLogoPaw} alt='강냥공냥공냥냥 헤더로고' />
+        <span className='a11y-hidden'>해피포</span>
+        <img src={headerLogoPaw} alt='해피포 헤더로고' />
       </h1>
       <S.SearchLink to={'/search'} />
     </S.Header>

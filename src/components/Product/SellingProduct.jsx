@@ -48,7 +48,7 @@ const SellingProduct = () => {
     if (selectedProduct) {
       openModal();
       setProductId(productId);
-      setProductLink(selectedProduct.link); // 새로운 상태로 저장
+      setProductLink(selectedProduct.link); 
     }
   };
 

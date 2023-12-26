@@ -13,7 +13,6 @@ const PRICE_REGEX = /^(?:[0-9]{1,6}|1000000|0)$/; // 1,000,000원 이하의 값�
 const URL_REGEX = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_.~#?&//=]*)/;
 
 const ProductFormInput = ({ id, label, formData, setFormData, error, setError, inputProps }) => {
-  // 유효성 검사
   const validateValue = (value) => {
     let result;
 
@@ -46,8 +45,8 @@ const ProductFormInput = ({ id, label, formData, setFormData, error, setError, i
 
     let updatedValue = value;
     if (id === 'price') {
-      const numericValue = value.replace(/[^0-9]/g, ''); // 숫자가 아닌 문자 제거
-      const formattedPrice = numericValue ? `${parseFloat(numericValue).toLocaleString('ko-KR')}원` : ''; // 원단위로 변환
+      const numericValue = value.replace(/[^0-9]/g, '');
+      const formattedPrice = numericValue ? `${parseFloat(numericValue).toLocaleString('ko-KR')}원` : '';
       updatedValue = formattedPrice;
     }
 

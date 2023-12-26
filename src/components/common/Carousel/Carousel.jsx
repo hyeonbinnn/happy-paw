@@ -48,30 +48,6 @@ const Carousel = ({ img }) => {
   const imgArr = img.split(',');
   const btnArr = Array.from({ length: imgArr.length }, (v, i) => i);
 
-  // 무한 캐러셀 구현..^^
-  // const makeNewImgArr = () => {
-  //   const start = imgArr[0];
-  //   const end = imgArr[imgArr.length - 1];
-  //   const newImgArr = [end, ...imgArr, start];
-  //   return newImgArr;
-  // };
-
-  // 자동 이미지 슬라이드
-  // useEffect(() => {
-  //   // 이미지 슬라이딩을 위한 타이머 설정
-  //   const timer = setInterval(() => {
-  //     // 다음 이미지로 이동
-  //     setCurrIndex((prevIndex) => (prevIndex + 1) % imgArr.length);
-  //   }, 3000);
-
-  //   return () => {
-  //     // 컴포넌트가 언마운트될 때 타이머 해제
-  //     clearInterval(timer);
-  //   };
-  // }, [imgArr]);
-
-  // const moveNext = () => {};
-
   return (
     <Container>
       <List

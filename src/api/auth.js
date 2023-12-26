@@ -16,9 +16,6 @@ export const login = async (email, password) => {
   });
 };
 
-// 토큰 검증
-// ...
-
 // 이미 존재하는 이메일(또는 계정)인지 검사
 export const validateForm = async (id, formData) => {
   return await request(`user/${id}valid`, {

@@ -17,7 +17,6 @@ export const Container = styled.div`
   margin: 0 auto;
   text-align: center;
   position: relative;
-  /* box-shadow: inset 0 0 20px lime; */
 `;
 
 export const ProfileImg = styled.img`

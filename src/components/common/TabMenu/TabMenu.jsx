@@ -8,8 +8,6 @@ import profile from '../../../assets/icon/icon-user.svg';
 import homeFill from '../../../assets/icon/icon-home-fill.svg';
 import chatFill from '../../../assets/icon/icon-message-circle-fill.svg';
 import profileFill from '../../../assets/icon/icon-user-fill.svg';
-// import footFill from '../../../assets/icon/icon-footFill.svg';
-// import foot from '../../../assets/icon/icon-foot.svg';
 import map from '../../../assets/icon/icon-map.svg';
 import mapFill from '../../../assets/icon/icon-mapFill.svg';
 

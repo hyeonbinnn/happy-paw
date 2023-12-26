@@ -16,7 +16,7 @@ const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, 
 
   useEffect(() => {
     // 댓글 작성자와 현재 사용자의 계정명 비교하여 isLoginUser 값을 설정
-    setIsLoginUser(userAccountname === commentAuthor); // commentId는 댓글 작성자의 계정명으로 가정
+    setIsLoginUser(userAccountname === commentAuthor);
   }, [userAccountname, commentAuthor]);
 
   const options = [
@@ -61,7 +61,6 @@ const CommentModal = ({ onClose, commentId, commentList, postId, commentAuthor, 
     }
   };
 
-  // ReportModal 컴포넌트 신고 확인 메시지 렌더링
   const renderAlertModal = () => {
     if (selectedOption === '신고하기') {
       return (
