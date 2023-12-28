@@ -52,12 +52,12 @@
 
 <table>
   <tr height="30px">
-    <th>FrontEnd</th>
-    <th>BackEnd</th>
-    <th>Design, Tool</th>
+    <th>Front-End</th>
+    <th>Back-End</th>
+    <th>Co-work & etc</th>
   </tr>
 <tr height="100px">
-<td valign="center" width= "50%">
+<td valign="center" width= "45%">
 <div align="center">
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
@@ -66,7 +66,7 @@
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
 </div>
 </td>
-<td valign="center" width= "15%">
+<td valign="center" width= "20%">
 <div align="center">
 <strong>제공된 API 사용</strong>
 </div>
