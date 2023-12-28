@@ -52,12 +52,12 @@
 
 <table>
   <tr height="30px">
-    <th>Frontend</th>
-    <th>Tool</th>
-    <th>기타</th>
+    <th>FrontEnd</th>
+    <th>BackEnd</th>
+    <th>Design, Tool</th>
   </tr>
-<tr height="80px">
-<td valign="center" width="35%">
+<tr height="100px">
+<td valign="center" width= "50%">
 <div align="center">
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
@@ -66,19 +66,22 @@
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
 </div>
 </td>
-<td valign="center" width="24%">
-<div align="center">  
-<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white">
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"> <br>
-<img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=Discord&logoColor=white">
-<img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white">
+<td valign="center" width= "15%">
+<div align="center">
+<strong>제공된 API 사용</strong>
 </div>
 </td>
-<td valign="center" width="20%">
-<div align="center">
-<img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white">
+<td valign="center" width= "50%">
+<div align="center">  
 <img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white">
+<img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"> <br>
+<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white"> <br>
+<img src="https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=Discord&logoColor=white"> 
+<img src="https://img.shields.io/badge/VSCode-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white">
 </div>
+</td>
+
 </td></tr></table>
 
 <br>
