@@ -236,8 +236,7 @@ export default theme;
 
 ### 3-3. Git Branch 전략
 #### - 소규모 프로젝트 방식 채택
-![그림1](https://github.com/hyeonbinnn/happy-paw/assets/117449788/1b7188bc-02c6-491f-9bf8-bad62ad27239)
-
+![그림1](https://github.com/hyeonbinnn/happy-paw/assets/117449788/f286ecb1-f4f7-4bc6-bd16-139e06242607)
 
 <br>
 <br>
