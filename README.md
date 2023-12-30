@@ -1,5 +1,4 @@
 # 🦴 Happy-Paw
-
 <p align="center"><img src ="https://github.com/FRONTENDSCHOOL5/final-22-undefined/assets/122862593/9fa4a124-9ec5-4b71-bfb5-06e7bb3f00e9"></p>
 
 <br>
@@ -11,6 +10,7 @@
 | :----------------------------------------------------------: | :------------------: | :----------: |
 | [`https://happy4.netlify.app/`](https://happy4.netlify.app/) | `happypaw@gmail.com` | `happypawpw` |
 
+<br>
 <br>
 <br>
 
@@ -26,6 +26,7 @@
 
 <br>
 <br>
+<br>
 
 ## 1. 프로젝트 소개
 
@@ -38,6 +39,7 @@
 
 <br>
 <br>
+<br>
 
 ## 2. 개발 환경
 
@@ -46,6 +48,7 @@
 - 프로젝트 기획 및 개발 : 2023.06.01 ~ 08.01
 - 프로젝트 노션 : <strong>[`해피포 노션 바로가기`](https://www.notion.so/22-undefined-91ffc29faf424d4d965788dfd80b55fc)</strong>
 
+<br>
 <br>
 
 ### 2-2. 기술스택
@@ -84,6 +87,7 @@
 
 </td></tr></table>
 
+<br>
 <br>
 <br>
 
@@ -140,6 +144,7 @@
 ```
 
 <br>
+<br>
 
 #### 3-1-2. 코드 컨벤션
 
@@ -159,6 +164,7 @@
   - 예2 ) 기능 개발의 경우 : 각 기능 단위로 커밋
 
 <br>
+<br>
 
 #### 3-1-3. 커밋 메세지
 
@@ -177,6 +183,7 @@
 - chore: 위의 모든 경우에 포함되지 않는 기타 수정사항
 ```
 
+<br>
 <br>
 
 ### 3-2. 협업 방식
@@ -227,6 +234,15 @@ export default theme;
 <br>
 <br>
 
+### 3-3. Git Branch 전략
+#### - 소규모 프로젝트 방식 채택
+![그림1](https://github.com/hyeonbinnn/happy-paw/assets/117449788/1b7188bc-02c6-491f-9bf8-bad62ad27239)
+
+
+<br>
+<br>
+<br>
+
 ## 4. 역할 분담
 
 ### 4-1. 팀원 소개
@@ -244,6 +260,7 @@ export default theme;
 
 <img width="3311" alt="해피포 마인드맵" src="https://github.com/FRONTENDSCHOOL5/final-22-undefined/assets/117449788/12dededa-596c-4cff-bbb3-74d879eab82c">
 
+<br>
 <br>
 <br>
 
@@ -348,6 +365,7 @@ useEffect(() => {
 디바운싱 기능을 적용함으로써 사용자가 입력할 때마다 서버요청을 하지 않기에 통신 비용이 발생하지 않습니다.
 
 <br>
+<br>
 
 ### 이미지 업로드를 위한 커스텀 훅
 ```jsx
@@ -409,7 +427,6 @@ export default useImagesUpload;
 <br>
 <br>
 <br>
-
 
 ## 7. 트러블 슈팅
 ### 반복되는 API 요청 작업을 줄이기 위해 파일 분리하기
