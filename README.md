@@ -1,4 +1,5 @@
 # 🦴 Happy-Paw
+
 <p align="center"><img src ="https://github.com/FRONTENDSCHOOL5/final-22-undefined/assets/122862593/9fa4a124-9ec5-4b71-bfb5-06e7bb3f00e9"></p>
 
 <br>
@@ -6,7 +7,7 @@
 
 > ### 🐾 해피포 (Happy-Paw) : 반려동물 통합 커뮤니티 서비스
 
-|                           배포 URL                           |         테스트 ID          |     테스트 PW      |
+|                           배포 URL                           |      테스트 ID       |  테스트 PW   |
 | :----------------------------------------------------------: | :------------------: | :----------: |
 | [`https://happy4.netlify.app/`](https://happy4.netlify.app/) | `happypaw@gmail.com` | `happypawpw` |
 
@@ -60,11 +61,8 @@
     <th>Co-work & etc</th>
   </tr>
 <tr height="100px">
-<td valign="center" width= "45%">
+<td valign="center" width= "30%">
 <div align="center">
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white">
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"> <br>
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
 </div>
@@ -235,7 +233,9 @@ export default theme;
 <br>
 
 ### 3-3. Git Branch 전략
+
 #### - 소규모 프로젝트 방식 채택
+
 ![그림1](https://github.com/hyeonbinnn/happy-paw/assets/117449788/f286ecb1-f4f7-4bc6-bd16-139e06242607)
 
 <br>
@@ -325,6 +325,7 @@ export default theme;
 <br>
 
 ## 6. 핵심 코드
+
 ### 실시간 이메일, 계정 ID 중복 검사 실행
 
 ```jsx
@@ -353,7 +354,7 @@ useEffect(() => {
 ```
 
 - <strong>`email`</strong>과 <strong>`accountname`</strong>만 중복 검사를 진행하기 때문에 <strong>`id`</strong>가 다른 값이 되면 <strong>`return`</strong>을 합니다. <br>
-그 다음 <strong>`formData.email`</strong>, <strong>`formData.accountname`</strong>이 변경될 때마다 실행이 됩니다.
+  그 다음 <strong>`formData.email`</strong>, <strong>`formData.accountname`</strong>이 변경될 때마다 실행이 됩니다.
 
 - 조건문을 통해 입력된 이메일과 계정 ID의 형식이 올바른지 확인한 뒤, <strong>`formData.accountname`</strong>이 현재 로그인한 사용자의 계정 ID와 일치하지 않는지 확인 후, 만약 조건에 해당하지 않는다면 함수를 종료합니다.
 
@@ -361,12 +362,13 @@ useEffect(() => {
   <strong>`timer`</strong> 변수에는 <strong>`setTimeout`</strong> 함수로 생성된 타이머 ID가 저장되며, <strong>`clearTimeout`</strong>을 사용하여 타이머 취소가 가능합니다.
 
 - <strong>`useEffect`</strong>의 반환 함수는 해당 이펙트가 정리(clean-up)될 때 실행하고, 여기서 타이머를 취소하기 위해 <strong>`clearTimeout`</strong>을 호출합니다. <br>
-디바운싱 기능을 적용함으로써 사용자가 입력할 때마다 서버요청을 하지 않기에 통신 비용이 발생하지 않습니다.
+  디바운싱 기능을 적용함으로써 사용자가 입력할 때마다 서버요청을 하지 않기에 통신 비용이 발생하지 않습니다.
 
 <br>
 <br>
 
 ### 이미지 업로드를 위한 커스텀 훅
+
 ```jsx
 import { useState } from 'react';
 import { uploadImages } from '../api/image';
@@ -428,7 +430,9 @@ export default useImagesUpload;
 <br>
 
 ## 7. 트러블 슈팅
+
 ### 반복되는 API 요청 작업을 줄이기 위해 파일 분리하기
+
 ```jsx
 const BASE_URL = 'https://api.mandarin.weniv.co.kr';
 
@@ -512,9 +516,6 @@ export const validateForm = async (id, formData) => {
 
 <br>
 <br>
-
-
-
 
 <br>
 <br>
