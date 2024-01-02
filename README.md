@@ -61,7 +61,7 @@
     <th>Co-work & etc</th>
   </tr>
 <tr height="100px">
-<td valign="center" width= "20%">
+<td valign="center" width= "30%">
 <div align="center">
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
