@@ -61,18 +61,18 @@
     <th>Co-work & etc</th>
   </tr>
 <tr height="100px">
-<td valign="center" width= "30%">
+<td valign="center" width= "20%">
 <div align="center">
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
 </div>
 </td>
-<td valign="center" width= "40%">
+<td valign="center" width= "30%">
 <div align="center">
 <strong>제공된 API 사용</strong>
 </div>
 </td>
-<td valign="center" width= "50%">
+<td valign="center" width= "60%">
 <div align="center">  
 <img src="https://img.shields.io/badge/figma-F24E1E?style=flat-square&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white"> 
