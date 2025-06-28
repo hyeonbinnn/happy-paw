@@ -64,7 +64,7 @@
 <td valign="center" width= "30%">
 <div align="center">
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black">
-<img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled components&logoColor=white">
+<img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styledcomponents&logoColor=white">
 </div>
 </td>
 <td valign="center" width= "30%">
